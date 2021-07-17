@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.dpk.saloon.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_vendorLoginFragment"
+            app:destination="@id/vendorLoginFragment"
+            app:enterAnim="@anim/enter_right_to_left"
+            app:popEnterAnim="@anim/enter_left_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/vendorLoginFragment"
+        android:name="com.dpk.saloon.VendorLoginFragment"
+        android:label="fragment_vendor_login"
+        tools:layout="@layout/fragment_vendor_login" />
+</navigation>
