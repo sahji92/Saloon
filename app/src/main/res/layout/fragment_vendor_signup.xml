@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.VendorSignupFragment"
+    android:isScrollContainer="false">
+
+    <LinearLayout
+        android:id="@+id/storeSignupmainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="11">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="@drawable/signuppic" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="-20dp"
+            android:src="@drawable/saloonlogo" />
+
+        <EditText
+            android:id="@+id/saloonName"
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:hint="Saloon Name"
+            android:inputType="text"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
+
+        <EditText
+            android:id="@+id/saloonId"
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Saloon Id"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
+
+        <EditText
+            android:id="@+id/location"
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Location"
+            android:inputType="text"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
+
+        <EditText
+            android:id="@+id/confirmPassword"
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/passwordCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Show Password"
+            android:layout_marginStart="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/storeSignupButton"
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundshape"
+            android:backgroundTint="@color/blue"
+            android:text="SignUp"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/backToStoreSignupPageButton"
+            android:layout_width="350dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/roundshape"
+            android:backgroundTint="@color/white"
+            android:text="Already have an account? Sign In"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_500" />
+    </LinearLayout>
+</ScrollView>

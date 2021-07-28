@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="myViewModel"
-            type="com.dpk.saloon.ui.main.MainViewModel"/>
-    </data>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:orientation="vertical"
-        android:weightSum="10">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.MainActivity"
+    android:orientation="vertical"
+    android:weightSum="10"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -96,6 +91,7 @@
         android:textColor="@color/white"
         android:layout_gravity="center"/>
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/storeSignupPageButton"
         android:layout_width="350dp"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -105,7 +101,5 @@
         android:text="For Business"
         android:textColor="@color/design_default_color_primary"
         android:textStyle="italic"
-        android:layout_marginTop="4dp"
-        android:onClick="@{()->myViewModel.goToVendorLoginPage()}"/>
+        android:layout_marginTop="4dp"/>
 </LinearLayout>
-</layout>

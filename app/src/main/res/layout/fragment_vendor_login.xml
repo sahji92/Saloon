@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/storeLoginMainLayout"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".VendorLoginFragment">
+    tools:context=".ui.VendorLoginFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
@@ -44,6 +45,7 @@
         android:textColor="@color/white" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goToSignupPageButton"
         android:layout_width="350dp"
         android:layout_height="0dp"
         android:layout_gravity="center"

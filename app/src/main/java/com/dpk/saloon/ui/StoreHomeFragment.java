@@ -1,4 +1,4 @@
-package com.dpk.saloon;
+package com.dpk.saloon.ui;
 
 import android.os.Bundle;
 
@@ -8,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.material.transition.MaterialSharedAxis;
+import com.dpk.saloon.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link VendorLoginFragment#newInstance} factory method to
+ * Use the {@link StoreHomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VendorLoginFragment extends Fragment {
+public class StoreHomeFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class VendorLoginFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public VendorLoginFragment() {
+    public StoreHomeFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class VendorLoginFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment VendorLoginFragment.
+     * @return A new instance of fragment StoreHomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static VendorLoginFragment newInstance(String param1, String param2) {
-        VendorLoginFragment fragment = new VendorLoginFragment();
+    public static StoreHomeFragment newInstance(String param1, String param2) {
+        StoreHomeFragment fragment = new StoreHomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -55,14 +55,12 @@ public class VendorLoginFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vendor_login, container, false);
-
+        return inflater.inflate(R.layout.fragment_store_home, container, false);
     }
 }

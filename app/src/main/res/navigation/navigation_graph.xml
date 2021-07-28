@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.dpk.saloon.ui.main.MainFragment"
+        android:name="com.dpk.saloon.ui.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" >
         <action
@@ -18,7 +18,31 @@
     </fragment>
     <fragment
         android:id="@+id/vendorLoginFragment"
-        android:name="com.dpk.saloon.VendorLoginFragment"
+        android:name="com.dpk.saloon.ui.VendorLoginFragment"
         android:label="fragment_vendor_login"
-        tools:layout="@layout/fragment_vendor_login" />
+        tools:layout="@layout/fragment_vendor_login" >
+        <action
+            android:id="@+id/action_vendorLoginFragment_to_vendorSignupFragment"
+            app:destination="@id/vendorSignupFragment"
+            app:enterAnim="@anim/enter_right_to_left"
+            app:popEnterAnim="@anim/enter_left_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/vendorSignupFragment"
+        android:name="com.dpk.saloon.ui.VendorSignupFragment"
+        android:label="VendorSignupFragment"
+        tools:layout="@layout/fragment_vendor_signup">
+        <action
+            android:id="@+id/action_vendorSignupFragment_to_LoginFragment"
+            app:destination="@id/vendorLoginFragment"
+            app:enterAnim="@anim/enter_left_to_right"/>
+        <action
+            android:id="@+id/action_vendorSignupFragment_to_storeHomeFragment"
+            app:destination="@id/storeHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storeHomeFragment"
+        android:name="com.dpk.saloon.ui.StoreHomeFragment"
+        android:label="storeHomeFragment"
+        tools:layout="@layout/fragment_store_home"/>
 </navigation>

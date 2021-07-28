@@ -1,10 +1,11 @@
-package com.dpk.saloon;
+package com.dpk.saloon.ui;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-import com.dpk.saloon.ui.main.MainFragment;
+import com.dpk.saloon.R;
 
 public class MainActivity extends AppCompatActivity {
 
