@@ -1,34 +1,28 @@
 package com.dpk.saloon.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class StoreUser implements Serializable {
     private  String usrname;
-    private boolean isCreated,isNew;
-    private boolean isAuthenticated;
     private String uid;
     private String saloonName;
     private String saloonId;
-    private String location;
     private String password;
-    public StoreUser(boolean isCreated, boolean isNew, boolean isAuthenticated, String uid, String saloonName, String saloonId, String location, String password) {
-        this.isCreated = isCreated;
-        this.isNew = isNew;
-        this.isAuthenticated = isAuthenticated;
-        this.uid = uid;
-        this.saloonName = saloonName;
-        this.saloonId = saloonId;
-        this.location = location;
-        this.password = password;
-    }
+    private ArrayList<String> storeServices= new ArrayList<>();
     public StoreUser(){
 
     }
 
-    public StoreUser(String uid, String saloonId, String usrname) {
+    public StoreUser(String uid, String usrname, String storeName) {
         this.uid=uid;
-        this.saloonId=saloonId;
         this.usrname=usrname;
+        this.saloonName=storeName;
+    }
+
+    public StoreUser(String storeId, String pswd) {
+        this.saloonId=storeId;
+        this.password=pswd;
     }
 
     public String getUid() {
@@ -55,14 +49,6 @@ public class StoreUser implements Serializable {
         this.saloonId = saloonId;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -71,35 +57,19 @@ public class StoreUser implements Serializable {
         this.password = password;
     }
 
-    public boolean isAuthenticated() {
-        return isAuthenticated;
-    }
-
-    public void setAuthenticated(boolean authenticated) {
-        isAuthenticated = authenticated;
-    }
-
-    public boolean isCreated() {
-        return isCreated;
-    }
-
-    public void setCreated(boolean created) {
-        isCreated = created;
-    }
-
-    public boolean isNew() {
-        return isNew;
-    }
-
-    public void setNew(boolean aNew) {
-        isNew = aNew;
-    }
-
     public String getUsrname() {
         return usrname;
     }
 
     public void setUsrname(String usrname) {
         this.usrname = usrname;
+    }
+
+    public ArrayList<String> getStoreServices() {
+        return storeServices;
+    }
+
+    public void setStoreServices(ArrayList<String> storeServices) {
+        this.storeServices = storeServices;
     }
 }

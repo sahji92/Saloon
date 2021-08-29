@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 
 import com.dpk.saloon.R;
 import com.dpk.saloon.databinding.MainFragmentBinding;
+import com.google.firebase.FirebaseApp;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
     MainFragmentBinding mainFragmentBinding;
@@ -31,6 +33,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mainFragmentBinding.storeSignupPageButton.setOnClickListener(this);
+        FirebaseApp.initializeApp(getContext());
     }
 
     @Override

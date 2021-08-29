@@ -26,6 +26,9 @@
             app:destination="@id/vendorSignupFragment"
             app:enterAnim="@anim/enter_right_to_left"
             app:popEnterAnim="@anim/enter_left_to_right" />
+        <action
+            android:id="@+id/action_vendorLoginFragment_to_storeHomeFragment"
+            app:destination="@id/storeHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/vendorSignupFragment"
@@ -37,12 +40,23 @@
             app:destination="@id/vendorLoginFragment"
             app:enterAnim="@anim/enter_left_to_right"/>
         <action
-            android:id="@+id/action_vendorSignupFragment_to_storeHomeFragment"
-            app:destination="@id/storeHomeFragment" />
+            android:id="@+id/action_vendorSignupFragment_to_addServicesFragment"
+            app:destination="@id/addServicesFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/storeHomeFragment"
         android:name="com.dpk.saloon.ui.StoreHomeFragment"
         android:label="storeHomeFragment"
         tools:layout="@layout/fragment_store_home"/>
+    <fragment
+        android:id="@+id/addServicesFragment"
+        android:name="com.dpk.saloon.ui.AddServicesFragment"
+        android:label="fragment_add_services"
+        tools:layout="@layout/fragment_add_services">
+        <action
+            android:id="@+id/action_addServicesFragment_to_storeHomeFragment"
+            app:destination="@id/storeHomeFragment"
+            app:enterAnim="@anim/enter_left_to_right"/>
+    </fragment>
 </navigation>

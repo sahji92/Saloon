@@ -1,9 +1,14 @@
 package com.dpk.saloon.ui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +17,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
+import com.dpk.saloon.BuildConfig;
 import com.dpk.saloon.R;
 import com.dpk.saloon.databinding.FragmentVendorSignupBinding;
-import com.dpk.saloon.viewmodel.StoreAuthViewModel;
+import com.dpk.saloon.util.AuthUtil;
+import com.dpk.saloon.viewmodel.StoreSignupViewModel;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -34,12 +42,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public class VendorSignupFragment extends Fragment implements View.OnClickListener {
     FragmentVendorSignupBinding fragmentVendorSignupBinding;
-    private FirebaseAuth mAuth;
-    StoreAuthViewModel storeAuthViewModel;
-    private FirebaseUser firebaseUser;
-    private ProgressDialog progressDialog;
-    private FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
-    private CollectionReference usersRef = rootRef.collection("/storeusers");
+    StoreSignupViewModel storeSignupViewModel;
+    CustomLottieDialog customLottieDialog;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -51,7 +56,6 @@ public class VendorSignupFragment extends Fragment implements View.OnClickListen
 
     public VendorSignupFragment() {
         // Required empty public constructor
-        mAuth = FirebaseAuth.getInstance();
     }
 
     /**
@@ -86,8 +90,7 @@ public class VendorSignupFragment extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        storeAuthViewModel = new ViewModelProvider(this).get(StoreAuthViewModel.class);
-        initProgressDialog();
+        storeSignupViewModel = new ViewModelProvider(this).get(StoreSignupViewModel.class);
         fragmentVendorSignupBinding = FragmentVendorSignupBinding.inflate(getLayoutInflater());
         return fragmentVendorSignupBinding.getRoot();
     }
@@ -96,7 +99,7 @@ public class VendorSignupFragment extends Fragment implements View.OnClickListen
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fragmentVendorSignupBinding.storeSignupmainLayout.setOnClickListener(this);
-        fragmentVendorSignupBinding.backToStoreSignupPageButton.setOnClickListener(this);
+        fragmentVendorSignupBinding.backToStoreSigninPageButton.setOnClickListener(this);
         fragmentVendorSignupBinding.storeSignupButton.setOnClickListener(this);
         fragmentVendorSignupBinding.passwordCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -114,61 +117,24 @@ public class VendorSignupFragment extends Fragment implements View.OnClickListen
         });
     }
 
-    /*public void signup(){
-            String saloonId=vendorSignupBinding.saloonId.getText().toString();
-            String password=vendorSignupBinding.password.getText().toString();
-            mAuth.createUserWithEmailAndPassword(saloonId,password)
-                    .addOnCompleteListener(getActivity(), task -> {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            firebaseUser= task.getResult().getUser();
-                            String usrname = saloonId.substring(0, 3) +firebaseUser.getUid().substring(0, 2) + (int) (Math.random() * 200);
-                            StoreUser storeUser = new StoreUser(firebaseUser.getUid(),saloonId, usrname);
-                            usersRef.add(storeUser);
-                            goToHomeFragment();
-                            progressDialog.dismiss();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Snackbar.make(vendorSignupBinding.mainLayout,"user already exist",Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.blue))
-                                    .setAction("close", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
 
-                                        }
-                                    })
-                                    .setActionTextColor(getResources().getColor(R.color.blue))
-                                    .show();
-                        }
-                    });
-
-        }*/
     @Override
     public void onClick(View v) {
         if (v.getId() == fragmentVendorSignupBinding.storeSignupmainLayout.getId()) {
-            storeAuthViewModel.closeKeyboardFromFragment(v);
-        } else if (v.getId() == fragmentVendorSignupBinding.backToStoreSignupPageButton.getId()) {
-            storeAuthViewModel.goBackToVendorLoginFragment(v);
+            AuthUtil.closeKeyboardFromFragment(v);
+        } else if (v.getId() == fragmentVendorSignupBinding.backToStoreSigninPageButton.getId()) {
+            storeSignupViewModel.goBackToVendorLoginFragment(v);
         } else if (v.getId() == fragmentVendorSignupBinding.storeSignupButton.getId()) {
             TextView storeName = fragmentVendorSignupBinding.saloonName;
             TextView storeId = fragmentVendorSignupBinding.saloonId;
-            TextView location = fragmentVendorSignupBinding.location;
             TextView pwd = fragmentVendorSignupBinding.password;
             TextView rpwd = fragmentVendorSignupBinding.confirmPassword;
-            storeAuthViewModel.validateInfo(getContext(),fragmentVendorSignupBinding.storeSignupmainLayout,storeName, storeId, location, pwd, rpwd);
+            boolean validationResult= AuthUtil.validateSignupInfo(getContext(),fragmentVendorSignupBinding.storeSignupmainLayout,storeName, storeId, pwd, rpwd);
+        if(validationResult){
+             customLottieDialog=new CustomLottieDialog(getContext());
+             customLottieDialog.show();
+             storeSignupViewModel.signup(storeName.getText().toString(),storeId.getText().toString(),pwd.getText().toString(),getContext(), fragmentVendorSignupBinding.storeSignupmainLayout,customLottieDialog,getView());
+        }
         }
     }
-
-    public void initProgressDialog() {
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading..."); // Setting Message
-        progressDialog.setTitle("VocabularyBattle"); // Setting Title
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
-        progressDialog.setCancelable(false);
-    }
-
-    public void goToHomeFragment() {
-        NavController controller = Navigation.findNavController(getView());
-        controller.navigate(R.id.action_vendorSignupFragment_to_storeHomeFragment);
-    }
-
 }

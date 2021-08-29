@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.AddServicesFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue">
+
+            <include layout="@layout/layout_selectservice_toolbar" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/storeServicesGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        app:singleSelection="false">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/hCutting"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hair Cutting"
+            app:chipIconEnabled="true"
+            app:chipIcon="@drawable/haircutting"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/hColoring"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hair Coloring"
+            app:chipIconEnabled="true"
+            app:chipIcon="@drawable/coloring"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/hStraightnening"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hair Straightening"
+            app:chipIconEnabled="true"
+            app:chipIcon="@drawable/straightening"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/shaving"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shaving"
+            app:chipIconEnabled="true"
+            app:chipIcon="@drawable/shaving"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/bleaching"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bleaching" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/message"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message"
+            app:chipIconEnabled="true"
+            app:chipIcon="@drawable/message"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/threading"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Threading" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/facial"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Facial"
+            app:chipIcon="@drawable/facial"
+            app:chipIconEnabled="true"/>
+
+    </com.google.android.material.chip.ChipGroup>
+<Button
+    android:id="@+id/addService_save_button"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:text="Save"
+    android:background="@drawable/roundshape"
+    android:backgroundTint="@color/blue"
+    android:layout_gravity="center"
+    android:textColor="@color/white"
+    android:layout_marginTop="10dp"/>
+</LinearLayout>
